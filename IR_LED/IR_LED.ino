@@ -25,11 +25,13 @@ void setup(){
 void loop() {
   // If there is incoming signal
   if (irrecv.decode(&results)) {
-    Serial.println(results.value, HEX);
-    handle_ir(results.value);
+    if(results.value != EMPTY){
+      //Serial.println(results.value, HEX);
+      handle_ir(results.value);
+    }
     irrecv.resume();
   }
   
   set_led();
-  delay(50);
+  delay(5);
 }
